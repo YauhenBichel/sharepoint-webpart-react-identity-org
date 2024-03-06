@@ -5,7 +5,7 @@ import {
   type IPropertyPaneConfiguration,
   PropertyPaneTextField
 } from '@microsoft/sp-property-pane';
-import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
+import { BaseClientSideWebPart, WebPartContext } from '@microsoft/sp-webpart-base';
 import { IReadonlyTheme } from '@microsoft/sp-component-base';
 
 import * as strings from 'WebpartReactWebPartStrings';
@@ -14,6 +14,7 @@ import { IWebpartReactProps } from './components/IWebpartReactProps';
 
 export interface IWebpartReactWebPartProps {
   description: string;
+  context: WebPartContext;
 }
 
 export default class WebpartReactWebPart extends BaseClientSideWebPart<IWebpartReactWebPartProps> {
@@ -26,6 +27,7 @@ export default class WebpartReactWebPart extends BaseClientSideWebPart<IWebpartR
       WebpartReact,
       {
         description: this.properties.description,
+        context: this.properties.context,
         isDarkTheme: this._isDarkTheme,
         environmentMessage: this._environmentMessage,
         hasTeamsContext: !!this.context.sdks.microsoftTeams,
