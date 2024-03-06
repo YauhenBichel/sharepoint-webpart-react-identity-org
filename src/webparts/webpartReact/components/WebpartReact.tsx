@@ -9,12 +9,6 @@ export default class WebpartReact extends React.Component<IWebpartReactProps, {}
       hasTeamsContext
     } = this.props;
 
-    if(this.props.context) {
-      console.log("webpartreact context: ", this.props.context);
-    } else {
-      console.log("webpartreact context is null");
-    }
-
     return (
       <section className={`${styles.webpartReact} ${hasTeamsContext ? styles.teams : ''}`}>
         <Organization context={this.props.context} />

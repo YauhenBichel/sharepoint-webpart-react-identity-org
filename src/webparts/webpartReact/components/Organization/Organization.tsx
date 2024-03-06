@@ -40,25 +40,8 @@ export class Organization extends React.Component<OrganizationProps, Organizatio
     }
 
     private async getItems() {
-
-        let httpClient = null;
-
-        if(!this.props.context) {
-            console.log("this.props.context is null");
-        } else if(this.props.context.httpClient) {
-            httpClient = this.props.context.httpClient;
-            console.log(httpClient);
-        } else if(this.context.httpClient) {
-            httpClient = this.context.httpClient;
-            console.log(httpClient);
-        } else {
-            console.log("httpClient is null");
-        }
-
-        if(httpClient) {
-            const response = await IdentityClient.getOrg(httpClient);
-            console.log(response);
-        }
+        const response = await IdentityClient.getOrg(this.props.context.httpClient);
+        console.log(response);
     }
 
     public componentDidMount(): void {

@@ -11,8 +11,6 @@ export default class IdentityClient {
               ],
               mode: "cors"
         };
-    
-        console.log("httpClient: ", httpClient);
 
         const response = await httpClient.get (
           url, 
