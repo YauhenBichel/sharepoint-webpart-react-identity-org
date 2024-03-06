@@ -27,7 +27,7 @@ export default class WebpartReactWebPart extends BaseClientSideWebPart<IWebpartR
       WebpartReact,
       {
         description: this.properties.description,
-        context: this.properties.context,
+        context: this.context,
         isDarkTheme: this._isDarkTheme,
         environmentMessage: this._environmentMessage,
         hasTeamsContext: !!this.context.sdks.microsoftTeams,

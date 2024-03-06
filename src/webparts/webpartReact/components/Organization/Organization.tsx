@@ -5,7 +5,6 @@ import 'rc-tree/assets/index.css';
 import Tree from 'rc-tree';
 import IdentityClient from '../../../../api/IdentityCLient';
 
-
 export class Organization extends React.Component<OrganizationProps, OrganizationState> {
     constructor(props: OrganizationProps, state: OrganizationState) {
         super(props);
@@ -41,8 +40,25 @@ export class Organization extends React.Component<OrganizationProps, Organizatio
     }
 
     private async getItems() {
-        const response = await IdentityClient.getOrg(this.props.context.httpClient);
-        console.log(response);
+
+        let httpClient = null;
+
+        if(!this.props.context) {
+            console.log("this.props.context is null");
+        } else if(this.props.context.httpClient) {
+            httpClient = this.props.context.httpClient;
+            console.log(httpClient);
+        } else if(this.context.httpClient) {
+            httpClient = this.context.httpClient;
+            console.log(httpClient);
+        } else {
+            console.log("httpClient is null");
+        }
+
+        if(httpClient) {
+            const response = await IdentityClient.getOrg(httpClient);
+            console.log(response);
+        }
     }
 
     public componentDidMount(): void {
@@ -56,7 +72,7 @@ export class Organization extends React.Component<OrganizationProps, Organizatio
                     className="myCls"
                     showLine
                     checkable
-                    selectable={false}
+                    selectable={true}
                     defaultExpandAll
                     treeData={this.state.items}
                 />
