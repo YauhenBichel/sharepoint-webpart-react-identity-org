@@ -1,5 +1,13 @@
 # webpart-react
 
+## add new app identifier
+https://molecare224.sharepoint.com/_layouts/15/appregnew.aspx
+
+## site settings
+https://molecare224.sharepoint.com/_layouts/15/settings.aspx
+
+
+
 >netstate -ano | findstr :4321
 >npx kill-port 4321
 

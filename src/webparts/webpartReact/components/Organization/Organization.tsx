@@ -3,6 +3,8 @@ import { OrganizationProps } from './OrganizationProps';
 import { OrganizationState } from './OrganizationState';
 import 'rc-tree/assets/index.css';
 import Tree from 'rc-tree';
+import IdentityClient from '../../../../api/IdentityCLient';
+
 
 export class Organization extends React.Component<OrganizationProps, OrganizationState> {
     constructor(props: OrganizationProps, state: OrganizationState) {
@@ -38,8 +40,9 @@ export class Organization extends React.Component<OrganizationProps, Organizatio
         }
     }
 
-    public getItems(): void {
-
+    private async getItems() {
+        const response = await IdentityClient.getOrg(this.props.context.httpClient);
+        console.log(response);
     }
 
     public componentDidMount(): void {
