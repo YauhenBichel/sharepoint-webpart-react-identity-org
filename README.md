@@ -13,11 +13,11 @@ https://molecare224.sharepoint.com/_layouts/15/settings.aspx
 
 ## Tree Structure
 
-University College London (UCL)
-  President and Provost (A01)
-    Casual - As & When Payments (B13)
-    Finance (C13)
-      Finance Services (D39)
-      Finance Business Partnering (DH5)
-        Professional Services & Estates Finance (D36)
+- University College London (UCL)
+- - President and Provost (A01)
+- - - Casual - As & When Payments (B13)
+- - - Finance (C13)
+- - - - Finance Services (D39)
+- - - - Finance Business Partnering (DH5)
+- - - - - Professional Services & Estates Finance (D36)
 
