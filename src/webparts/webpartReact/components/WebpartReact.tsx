@@ -2,12 +2,39 @@ import * as React from 'react';
 import styles from './WebpartReact.module.scss';
 import type { IWebpartReactProps } from './IWebpartReactProps';
 import { escape } from '@microsoft/sp-lodash-subset';
+import 'rc-tree/assets/index.css';
+import Tree from 'rc-tree';
+
+const treeData = [
+  {
+    key: '0-0',
+    title: 'parent 1',
+    children: [
+      { key: '0-0-0', title: 'parent 1-1', children: [{ key: '0-0-0-0', title: 'parent 1-1-0' }] },
+      {
+        key: '0-0-1',
+        title: 'parent 1-2',
+        children: [
+          { key: '0-0-1-0', title: 'parent 1-2-0', disableCheckbox: true },
+          { key: '0-0-1-1', title: 'parent 1-2-1' },
+          { key: '0-0-1-2', title: 'parent 1-2-2' },
+          { key: '0-0-1-3', title: 'parent 1-2-3' },
+          { key: '0-0-1-4', title: 'parent 1-2-4' },
+          { key: '0-0-1-5', title: 'parent 1-2-5' },
+          { key: '0-0-1-6', title: 'parent 1-2-6' },
+          { key: '0-0-1-7', title: 'parent 1-2-7' },
+          { key: '0-0-1-8', title: 'parent 1-2-8' },
+          { key: '0-0-1-9', title: 'parent 1-2-9' },
+          { key: 1128, title: 1128 },
+        ],
+      },
+    ],
+  },
+];
 
 export default class WebpartReact extends React.Component<IWebpartReactProps, {}> {
   public render(): React.ReactElement<IWebpartReactProps> {
     const {
-      description,
-      isDarkTheme,
       environmentMessage,
       hasTeamsContext,
       userDisplayName
@@ -16,26 +43,18 @@ export default class WebpartReact extends React.Component<IWebpartReactProps, {}
     return (
       <section className={`${styles.webpartReact} ${hasTeamsContext ? styles.teams : ''}`}>
         <div className={styles.welcome}>
-          <img alt="" src={isDarkTheme ? require('../assets/welcome-dark.png') : require('../assets/welcome-light.png')} className={styles.welcomeImage} />
-          <h2>Well done, {escape(userDisplayName)}!</h2>
+          <h4>Hi, {escape(userDisplayName)}!</h4>
           <div>{environmentMessage}</div>
-          <div>Web part property value: <strong>{escape(description)}</strong></div>
         </div>
         <div>
-          <h3>Welcome to SharePoint Framework!</h3>
-          <p>
-            The SharePoint Framework (SPFx) is a extensibility model for Microsoft Viva, Microsoft Teams and SharePoint. It&#39;s the easiest way to extend Microsoft 365 with automatic Single Sign On, automatic hosting and industry standard tooling.
-          </p>
-          <h4>Learn more about SPFx development:</h4>
-          <ul className={styles.links}>
-            <li><a href="https://aka.ms/spfx" target="_blank" rel="noreferrer">SharePoint Framework Overview</a></li>
-            <li><a href="https://aka.ms/spfx-yeoman-graph" target="_blank" rel="noreferrer">Use Microsoft Graph in your solution</a></li>
-            <li><a href="https://aka.ms/spfx-yeoman-teams" target="_blank" rel="noreferrer">Build for Microsoft Teams using SharePoint Framework</a></li>
-            <li><a href="https://aka.ms/spfx-yeoman-viva" target="_blank" rel="noreferrer">Build for Microsoft Viva Connections using SharePoint Framework</a></li>
-            <li><a href="https://aka.ms/spfx-yeoman-store" target="_blank" rel="noreferrer">Publish SharePoint Framework applications to the marketplace</a></li>
-            <li><a href="https://aka.ms/spfx-yeoman-api" target="_blank" rel="noreferrer">SharePoint Framework API reference</a></li>
-            <li><a href="https://aka.ms/m365pnp" target="_blank" rel="noreferrer">Microsoft 365 Developer Community</a></li>
-          </ul>
+        <Tree
+          className="myCls"
+          showLine
+          checkable
+          selectable={false}
+          defaultExpandAll
+          treeData={treeData}
+        />
         </div>
       </section>
     );
