@@ -17,6 +17,11 @@ export default class IdentityClient {
           HttpClient.configurations.v1, 
           config
         );
+
+        if (!response.ok) {
+          const responseText = await response.text();
+          throw new Error(responseText);
+        };
     
         const respJson = await response.json();
         return respJson;
