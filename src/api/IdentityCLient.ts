@@ -3,7 +3,7 @@ import { HttpClient, IHttpClientOptions } from '@microsoft/sp-http';
 export default class IdentityClient {
   //looks like the action for org in controller is without settings for cors
   //as 'Access-Control-Allow-Origin: *'
-    public static async getOrg(httpClient: HttpClient) {
+    public static async getOrg(httpClient: HttpClient) : Promise<string> {
         const url = "https://identity.mesh-dev.ucl.ac.uk/organisation/v0.2/org";
         const config: IHttpClientOptions = {
             headers: [
@@ -21,7 +21,7 @@ export default class IdentityClient {
         if (!response.ok) {
           const responseText = await response.text();
           throw new Error(responseText);
-        };
+        }
     
         const respJson = await response.json();
         return respJson;

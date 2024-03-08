@@ -3,6 +3,8 @@ import { Organisation } from '../model/Organisation';
 import { RcOrgTree } from '../model/RcOrgTree';
 import { UclOrganisation } from '../model/UclOrganisation';
 import { UclOrganisationItem } from '../model/UclOrganisationItem';
+import { RcTreeItem } from '../model/RcTreeItem';
+import { TreeItem } from '../model/TreeItem';
 
 export class OrganisationTreeMapper {
     public mapToOrganisation(orgResponseJson: string) : Organisation {
@@ -28,10 +30,24 @@ export class OrganisationTreeMapper {
       return uclOrg;
     }
 
-    public mapToTree(org: Organisation) : OrgTree {
-        console.log("mapToTree: org: ", org);
+    public mapToTree(uclOrg: Organisation) : OrgTree {
+        console.log("mapToTree: org: ", uclOrg);
 
         let orgTree: OrgTree = new RcOrgTree();
+        if(!uclOrg.items) {
+          return orgTree;
+        }
+
+        orgTree.items = new Array<TreeItem>();
+
+        for(let item of uclOrg.items) {
+          if(item.level === '0') {
+            let treeItem: RcTreeItem = new RcTreeItem();
+            treeItem.key = item.level + '-' + item.level;
+            treeItem.title = item.name + '(' + item.identifier + ')';
+            orgTree.items.push();
+          }
+        }
 
         return orgTree;
     }

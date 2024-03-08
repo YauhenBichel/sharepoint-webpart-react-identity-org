@@ -1,3 +1,3 @@
 export interface OrganizationState {
-    items: any
+    items: Array<any>
 }
