@@ -4,15 +4,19 @@ import Tree from 'rc-tree';
 import { OrganizationProps } from './OrganizationProps';
 import { OrganizationState } from './OrganizationState';
 import { OrganisationService } from '../../../../service/OrganizationService';
+import { OrganisationTreeMapper } from '../../../../mapper/OrganisationTreeMapper';
+import { Organisation } from '../../../../model/Organisation';
 
 export class Organization extends React.Component<OrganizationProps, OrganizationState> {
 
     orgnasationService: OrganisationService;
+    orgTreeMapper: OrganisationTreeMapper;
 
     constructor(props: OrganizationProps, state: OrganizationState) {
         super(props);
 
         this.orgnasationService = new OrganisationService();
+        this.orgTreeMapper = new OrganisationTreeMapper();
 
         this.state = {
             items: [
@@ -45,8 +49,10 @@ export class Organization extends React.Component<OrganizationProps, Organizatio
     }
 
     private async getItems() {
-        const response = await this.orgnasationService.getOrganisation(this.props.context.httpClient);
-        console.log(response);
+        let uclOrganisation: Organisation = await this.orgnasationService.getOrganisation(this.props.context.httpClient);
+        this.orgTreeMapper.mapToTree(uclOrganisation);
+        
+        console.log(uclOrganisation);
     }
 
     public componentDidMount(): void {

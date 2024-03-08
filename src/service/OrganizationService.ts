@@ -21,15 +21,16 @@ export class OrganisationService {
 
         try {
         const response = await IdentityClient.getOrg(httpClient);
-        console.log(response);
 
         uclOrg = this.orgTreeMapper.mapToOrganisation(response);
+        console.log("org service: getOrg: uclOrg:", uclOrg);
 
         } catch(error) {
             console.log('Issue is happened during fetching identity organisation. Loaded cached version of organisation.');
             console.log(error);
             
             uclOrg = this.orgTreeMapper.mapToOrganisation(this.cachedOrg.getOrgResponseJson());
+            console.log("org service: getOrg: catch: uclOrg:", uclOrg);
         }
 
         return uclOrg; 
