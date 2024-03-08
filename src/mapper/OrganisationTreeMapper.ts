@@ -1,7 +1,13 @@
-//filter to display only active (active = 'Y')
-class OrgItem {
-    //name = name (identifier)
+import { OrgTree } from '../model/OrgTree';
+import { Organisation } from '../model/Organisation';
+import { RcOrgTree } from '../model/RcOrgTree';
 
+export class OrganisationTreeMapper {
+    public mapToTree(organisation: Organisation) : OrgTree {
+        let orgTree: OrgTree = new RcOrgTree();
+
+        return orgTree;
+    }
 }
 
 /*

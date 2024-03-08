@@ -1,11 +1,13 @@
+https://github.com/ucl-isd/sharepoint-identity-organization-tree-api-consumer.git
+
+
   - **npm install**
   - **gulp serve**
 
-## add new app identifier
-https://molecare224.sharepoint.com/_layouts/15/appregnew.aspx
-
 ## site settings
 https://molecare224.sharepoint.com/_layouts/15/settings.aspx
+https://eisdtestuclac.sharepoint.com/_layouts/15/settings.aspx
+https://eisdtestuclac.sharepoint.com/sites/Yauhen-Test01/_layouts/15/viewlsts.aspx?view=14
 
 
 >netstate -ano | findstr :4321
