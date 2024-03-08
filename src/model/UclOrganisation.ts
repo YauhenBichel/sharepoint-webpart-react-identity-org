@@ -1,6 +1,8 @@
+import { FlatOrganisationItem } from "./FlatOrganisationItem";
 import { Organisation } from "./Organisation";
-import { OrganisationItem } from "./OrganisationItem";
+import { TreeOrganisationItem } from "./TreeOrganisationItem";
 
 export class UclOrganisation implements Organisation {
-  items?: Array<OrganisationItem>
+  treeItems: TreeOrganisationItem[];
+  flatItems: FlatOrganisationItem[];
 }

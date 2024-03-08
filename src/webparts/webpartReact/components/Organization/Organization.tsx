@@ -6,8 +6,7 @@ import { OrganizationState } from './OrganizationState';
 import { OrganisationService } from '../../../../service/OrganizationService';
 import { OrganisationTreeMapper } from '../../../../mapper/OrganisationTreeMapper';
 import { Organisation } from '../../../../model/Organisation';
-import { RcOrgTree } from '../../../../model/RcOrgTree';
-import { TreeItem } from '../../../../model/TreeItem';
+import { TreeOrganisationItem } from '../../../../model/TreeOrganisationItem';
 
 export class Organization extends React.Component<OrganizationProps, OrganizationState> {
 
@@ -21,16 +20,16 @@ export class Organization extends React.Component<OrganizationProps, Organizatio
         this.orgTreeMapper = new OrganisationTreeMapper();
 
         this.state = {
-            items: new Array<TreeItem>()
+            items: new Array<TreeOrganisationItem>()
         }
     }
 
     private async getItems() : Promise<void> {
         let uclOrganisation: Organisation = await this.orgnasationService.getOrganisation(this.props.context.httpClient);
-        let orgTree: RcOrgTree = this.orgTreeMapper.mapToTree(uclOrganisation);
+        let treeItems: Array<TreeOrganisationItem> = this.orgTreeMapper.mapToTree(uclOrganisation);
         
-        console.log("org tree: ", orgTree);
-        this.setState({items: orgTree.items});
+        console.log("org tree: ", treeItems);
+        this.setState({items: treeItems});
     }
 
     public componentDidMount(): void {

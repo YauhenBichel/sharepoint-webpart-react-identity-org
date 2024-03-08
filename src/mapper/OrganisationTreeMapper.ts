@@ -1,20 +1,28 @@
-import { OrgTree } from '../model/OrgTree';
 import { Organisation } from '../model/Organisation';
-import { RcOrgTree } from '../model/RcOrgTree';
 import { UclOrganisation } from '../model/UclOrganisation';
-import { UclOrganisationItem } from '../model/UclOrganisationItem';
-import { RcTreeItem } from '../model/RcTreeItem';
-import { TreeItem } from '../model/TreeItem';
+import { UclFlatOrganisationItem } from '../model/UclFlatOrganisationItem';
+import { Converters } from '../utility/Converters';
+import { UclTreeOrganisationItem } from '../model/UclTreeOrganisationItem';
+import { TreeOrganisationItem } from '../model/TreeOrganisationItem';
 
 export class OrganisationTreeMapper {
+
+    converters: Converters;
+
+    constructor() {
+      this.converters = new Converters();
+    }
+
     public mapToOrganisation(orgResponseJson: string) : Organisation {
+      
       let uclOrg: Organisation = new UclOrganisation();
       const arrRespJson: Array<any> = JSON.parse(orgResponseJson).organisation_collection.organisation;
       
-      uclOrg.items = new Array<UclOrganisationItem>();
-
+      uclOrg.flatItems = new Array<UclFlatOrganisationItem>();
+      uclOrg.treeItems = new Array<UclTreeOrganisationItem>();
+      
       for(let item of arrRespJson) {
-        let uclOrgItem: UclOrganisationItem = new UclOrganisationItem();
+        let uclOrgItem: UclFlatOrganisationItem = new UclFlatOrganisationItem();
         uclOrgItem.active = item.active;
         uclOrgItem.identifier = item.identifier;
         uclOrgItem.level = item.level;
@@ -24,31 +32,22 @@ export class OrganisationTreeMapper {
         uclOrgItem.path = item.path;
         uclOrgItem.short_name = item.short_name;
 
-        uclOrg.items?.push(uclOrgItem);
+        uclOrg.flatItems.push(uclOrgItem);
       }
 
       return uclOrg;
     }
 
-    public mapToTree(uclOrg: Organisation) : OrgTree {
+    public mapToTree(uclOrg: Organisation) : TreeOrganisationItem[] {
         console.log("mapToTree: org: ", uclOrg);
 
-        let orgTree: OrgTree = new RcOrgTree();
-        if(!uclOrg.items) {
-          return orgTree;
+        let treeItems = this.converters.listToTree(uclOrg.flatItems);
+        console.log(JSON.stringify(treeItems[0]));
+
+        if(!uclOrg.treeItems) {
+          return new Array<TreeOrganisationItem>();
         }
 
-        orgTree.items = new Array<TreeItem>();
-
-        for(let item of uclOrg.items) {
-          if(item.level === '0') {
-            let treeItem: RcTreeItem = new RcTreeItem();
-            treeItem.key = item.level + '-' + item.level;
-            treeItem.title = item.name + '(' + item.identifier + ')';
-            orgTree.items.push();
-          }
-        }
-
-        return orgTree;
+        return treeItems;
     }
 }

@@ -1,6 +1,4 @@
-import { OrganisationItem } from "./OrganisationItem";
-
-export class UclOrganisationItem implements OrganisationItem {
+export interface FlatOrganisationItem {
   identifier: string;
   name: string;
   short_name: string;
