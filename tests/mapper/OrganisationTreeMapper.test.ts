@@ -5,7 +5,7 @@ import * as orgResponseJson from '../data/JsonOrgResponse.json';
 
 describe('Organisation Tree Mapper', () => {
 
-  it('should root web part element exists', () => {
+  it('should map org response into model Organisation with flat items', () => {
 
     let mapper: OrganisationTreeMapper = new OrganisationTreeMapper(); 
     

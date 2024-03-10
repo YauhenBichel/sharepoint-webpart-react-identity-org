@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="1" failures="0" errors="0" time="2.311">
-  <testsuite name="Organisation Tree Mapper" errors="0" failures="0" skipped="0" timestamp="2024-03-10T13:31:11" time="2.156" tests="1">
-    <testcase classname="Organisation Tree Mapper should root web part element exists" name="Organisation Tree Mapper should root web part element exists" time="0.002">
+<testsuites name="jest tests" tests="1" failures="0" errors="0" time="2.382">
+  <testsuite name="Organisation Tree Mapper" errors="0" failures="0" skipped="0" timestamp="2024-03-10T13:33:01" time="2.21" tests="1">
+    <testcase classname="Organisation Tree Mapper should map org response into model Organisation with flat items" name="Organisation Tree Mapper should map org response into model Organisation with flat items" time="0.002">
     </testcase>
   </testsuite>
 </testsuites>
