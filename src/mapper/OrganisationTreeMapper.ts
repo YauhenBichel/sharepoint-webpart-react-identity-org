@@ -1,17 +1,11 @@
 import { Organisation } from '../model/Organisation';
 import { UclOrganisation } from '../model/UclOrganisation';
 import { UclFlatOrganisationItem } from '../model/UclFlatOrganisationItem';
-import { Converters } from '../utility/Converters';
 import { UclTreeOrganisationItem } from '../model/UclTreeOrganisationItem';
 import { TreeOrganisationItem } from '../model/TreeOrganisationItem';
+import { FlatOrganisationItem } from '../model/FlatOrganisationItem';
 
 export class OrganisationTreeMapper {
-
-    converters: Converters;
-
-    constructor() {
-      this.converters = new Converters();
-    }
 
     public mapToOrganisation(orgResponseJson: string) : Organisation {
       
@@ -41,13 +35,52 @@ export class OrganisationTreeMapper {
     public mapToTree(uclOrg: Organisation) : TreeOrganisationItem[] {
         console.log("mapToTree: org: ", uclOrg);
 
-        let treeItems = this.converters.listToTree(uclOrg.flatItems);
-        console.log(JSON.stringify(treeItems[0]));
-
-        if(!uclOrg.treeItems) {
-          return new Array<TreeOrganisationItem>();
+        let orgList = uclOrg.flatItems;
+        
+        let map: any = {};
+        let mapNodes: any = {};
+        let node: TreeOrganisationItem;
+        let roots: Array<TreeOrganisationItem> = new Array<TreeOrganisationItem>();
+        
+        for (let i = 0; i < orgList.length; i++) {
+          map[orgList[i].identifier] = i;
+          mapNodes[orgList[i].identifier] = this.flatItemToTreeItem(orgList[i]);
         }
+        
+        for (let i = 0; i < orgList.length; i++) {
+          node = mapNodes[orgList[i].identifier];
 
-        return treeItems;
+          if (node.parent_identifier) {
+            let parentNode: TreeOrganisationItem = mapNodes[node.parent_identifier];
+            node.key = parentNode.key;
+
+            let children: TreeOrganisationItem[] = parentNode.children;
+            node.key += '-' + children.length;
+          
+            node.title = node.name + ' (' + node.identifier + ')';
+            children.push(node);
+          } else {
+            node.key = '0-' + roots.length;
+            roots.push(node);
+          }
+        }
+        return roots;
     }
+
+    private flatItemToTreeItem(flatItem : FlatOrganisationItem) : TreeOrganisationItem {
+      let treeNode: TreeOrganisationItem = new UclTreeOrganisationItem();
+      treeNode.active = flatItem.active;
+      treeNode.key = "0-0";
+      treeNode.title = flatItem.name + " (" + flatItem.identifier + " )";
+      treeNode.children = new Array<TreeOrganisationItem>();
+      treeNode.identifier = flatItem.identifier;
+      treeNode.level = flatItem.level;
+      treeNode.name = flatItem.name;
+      treeNode.parent_identifier = flatItem.parent_identifier;
+      treeNode.parent_level = flatItem.parent_level;
+      treeNode.path = flatItem.path;
+      treeNode.short_name = flatItem.short_name;
+
+      return treeNode;
+  }
 }
