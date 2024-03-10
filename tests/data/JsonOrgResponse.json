@@ -1,0 +1,93 @@
+{
+    "response": {
+        "organisation_collection": {
+            "organisation": [
+                {
+                    "identifier": "UCL",
+                    "name": "University College London",
+                    "short_name": "UCL",
+                    "level": "0",
+                    "path": "/UCL/",
+                    "active": "Y",
+                    "parent_identifier": null,
+                    "parent_level": null,
+                    "parent_name": null,
+                    "faculty_code": null,
+                    "faculty_name": null,
+                    "external": "N",
+                    "address": {
+                        "address_line_1": "Gower Street",
+                        "address_line_2": null,
+                        "address_line_3": null,
+                        "address_line_4": "London",
+                        "postcode": "WC1E 6BT"
+                    },
+                    "supplementary": {
+                        "type_code": "X",
+                        "type_description": "Non HR",
+                        "home_page": "http://www.ucl.ac.uk/",
+                        "hod_title": "Provost and President",
+                        "obsolete_date": ""
+                    }
+                },
+                {
+                    "identifier": "A01",
+                    "name": "President and Provost",
+                    "short_name": "Provost",
+                    "level": "1",
+                    "path": "/UCL/A01/",
+                    "active": "Y",
+                    "parent_identifier": "UCL",
+                    "parent_level": "0",
+                    "parent_name": "University College London",
+                    "faculty_code": null,
+                    "faculty_name": null,
+                    "external": "N",
+                    "address": {
+                        "address_line_1": null,
+                        "address_line_2": null,
+                        "address_line_3": null,
+                        "address_line_4": null,
+                        "postcode": null
+                    },
+                    "supplementary": {
+                        "type_code": "P",
+                        "type_description": "Provost",
+                        "home_page": "http://www.ucl.ac.uk/provost",
+                        "hod_title": null,
+                        "obsolete_date": ""
+                    }
+                },
+                {
+                    "identifier": "B01",
+                    "name": "Vice-President (Operations)",
+                    "short_name": "VPOps",
+                    "level": "2",
+                    "path": "/UCL/A01/B01/",
+                    "active": "Y",
+                    "parent_identifier": "A01",
+                    "parent_level": "1",
+                    "parent_name": "President and Provost",
+                    "faculty_code": null,
+                    "faculty_name": null,
+                    "external": "N",
+                    "address": {
+                        "address_line_1": null,
+                        "address_line_2": null,
+                        "address_line_3": null,
+                        "address_line_4": null,
+                        "postcode": null
+                    },
+                    "supplementary": {
+                        "type_code": "R",
+                        "type_description": "Vice Provost",
+                        "home_page": "http://www.ucl.ac.uk/professional-services",
+                        "hod_title": "V",
+                        "obsolete_date": ""
+                    }
+                
+                }
+            ]
+        }
+    }
+}
