@@ -3,6 +3,7 @@
 ## How to run
 > npm install
 > gulp serve
+> npm run test
 
 ## API
 > Identity organization API
