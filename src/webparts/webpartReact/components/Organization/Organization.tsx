@@ -39,9 +39,7 @@ export class Organization extends React.Component<OrganizationProps, Organizatio
         return (
             <>
                 <Tree
-                    className="myCls"
                     showLine
-                    checkable
                     selectable={true}
                     defaultExpandAll
                     treeData={this.state.items}
