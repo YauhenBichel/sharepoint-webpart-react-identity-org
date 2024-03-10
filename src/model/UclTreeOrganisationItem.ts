@@ -1,4 +1,4 @@
-import { TreeOrganisationItem } from "./TreeOrganisationItem";
+import { TreeOrganisationItem } from './TreeOrganisationItem';
 
 export class UclTreeOrganisationItem implements TreeOrganisationItem {
   identifier: string;

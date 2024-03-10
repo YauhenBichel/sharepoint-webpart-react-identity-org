@@ -1,4 +1,4 @@
-import { FlatOrganisationItem } from "./FlatOrganisationItem";
+import { FlatOrganisationItem } from './FlatOrganisationItem';
 
 export class UclFlatOrganisationItem implements FlatOrganisationItem {
   identifier: string;
