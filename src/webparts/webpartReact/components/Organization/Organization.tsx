@@ -28,7 +28,6 @@ export class Organization extends React.Component<OrganizationProps, Organizatio
         let uclOrganisation: Organisation = await this.orgnasationService.getOrganisation(this.props.context.httpClient);
         let treeItems: Array<TreeOrganisationItem> = this.orgTreeMapper.mapToTree(uclOrganisation);
         
-        console.log("org tree: ", treeItems);
         this.setState({items: treeItems});
     }
 

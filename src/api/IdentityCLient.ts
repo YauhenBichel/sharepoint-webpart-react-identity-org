@@ -20,8 +20,12 @@ export default class IdentityClient {
 
         if (!response.ok) {
           const responseText = await response.text();
+          
+          console.log("API FALED");
           throw new Error(responseText);
         }
+
+        console.log("API OK");
     
         const respJson = await response.json();
         return respJson;
